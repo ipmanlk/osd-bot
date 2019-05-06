@@ -1,0 +1,6 @@
+{
+    "DISCORD_BOT_TOKEN": "YOUR_TOKEN",
+    "TELEGRAM_BOT_TOKEN": "YOUR_TOKEN",
+    "BOT_TRIGGER": "?lk",
+    "BOT_COMMAND_TRIGGER": "*"
+}
