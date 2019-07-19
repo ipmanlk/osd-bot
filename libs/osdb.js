@@ -1,5 +1,6 @@
 const request = require('request');
 const utf8 = require("utf8");
+const translate = require('@vitalets/google-translate-api');
 
 const getMeanings = (word) => {
     return new Promise((resolve, reject) => {
@@ -12,11 +13,16 @@ const getMeanings = (word) => {
                 let text;
                 if (meanings) {
                     text = formatMeanings(meanings);
+                    resolve(text);
                 } else {
-                    text = "Sorry!. I was unable to find Sinhala meanings for that word!.";
+                    let test = (/^[A-Za-z][\sA-Za-z0-9.\"\']*$/.test(word));
+                    test ? lang = "si" : lang = "en";
+                    translate(word, { to: lang }).then(resp => {
+                        resolve(resp.text);
+                    }).catch(err => {
+                        reject(err);
+                    });
                 }
-
-                resolve(text);
             });
 
         } catch (err) {
