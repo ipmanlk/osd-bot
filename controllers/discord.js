@@ -39,12 +39,13 @@ const registerListeners = () => {
             let res = commands.getResponse(command);
             sendBotResponse(msg, res);
         }
-
     });
 };
 
 const sendBotResponse = (msg, str) => {
     msg.channel.send(formatBotResponse(str));
+    // delete msg
+    msg.delete(1000);
 };
 
 const formatBotResponse = (str) => {
